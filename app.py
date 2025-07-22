@@ -31,7 +31,7 @@ if st.sidebar.button("Clear Chat History"):
 
 if "messages" not in st.session_state:
     st.session_state["messages"]=[
-        {"role":"assisstant","content":"Hi,🤖 I'm a chatbot who can search the web and arxiv . How can I help you?"}
+        {"role":"assistant","content":"Hi,🤖 I'm a chatbot who can search the web and arxiv . How can I help you?"}
     ]
 
 for msg in st.session_state.messages:
