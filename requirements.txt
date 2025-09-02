@@ -35,3 +35,4 @@ streamlit
 validators
 youtube_transcript_api
 pytube
+ddgs
