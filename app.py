@@ -3,7 +3,7 @@ from langchain_groq import ChatGroq
 from langchain_community.utilities import ArxivAPIWrapper,WikipediaAPIWrapper
 from langchain_community.tools import ArxivQueryRun,WikipediaQueryRun,DuckDuckGoSearchRun
 from langchain.agents import initialize_agent,AgentType
-from langchain.callbacks import StreamlitCallbackHandler
+from langchain_community.callbacks.streamlit import StreamlitCallbackHandler
 import os
 from dotenv import load_dotenv
 from langchain.memory import ConversationBufferWindowMemory
@@ -52,7 +52,7 @@ if prompt:=st.chat_input(placeholder="What is machine learning?"):
     st.session_state.messages.append({"role":"user","content":prompt})
     st.chat_message("user").write(prompt)
 
-    llm=ChatGroq(groq_api_key=api_key,model_name="Llama3-8b-8192",streaming=True)
+    llm=ChatGroq(groq_api_key=api_key,model_name="llama-3.3-70b-versatile",streaming=True)
     tools=[search,arxiv,wiki]
 
     search_agent=initialize_agent(tools,llm,agent=AgentType.CHAT_CONVERSATIONAL_REACT_DESCRIPTION,memory=memory,handle_parsing_errors=True)
