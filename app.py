@@ -7,18 +7,24 @@ from langchain.callbacks import StreamlitCallbackHandler
 import os
 from dotenv import load_dotenv
 from langchain.memory import ConversationBufferWindowMemory
+from langchain.tools import Tool
+from pytube import Search
+from pytube.exceptions import VideoUnavailable , LiveStreamError, AgeRestrictedError
+from youtube_transcript_api._errors import NoTranscriptFound
+from youtube_transcript_api import YouTubeTranscriptApi
 
 ## Arxiv and wikipedia Tools
-arxiv_wrapper=ArxivAPIWrapper(top_k_results=1, doc_content_chars_max=2000)
+arxiv_wrapper=ArxivAPIWrapper(top_k_results=1, doc_content_chars_max=1000)
 arxiv=ArxivQueryRun(api_wrapper=arxiv_wrapper)
 
-api_wrapper=WikipediaAPIWrapper(top_k_results=1,doc_content_chars_max=2000)
+api_wrapper=WikipediaAPIWrapper(top_k_results=1,doc_content_chars_max=1000)
 wiki=WikipediaQueryRun(api_wrapper=api_wrapper)
 
 search=DuckDuckGoSearchRun(name="Search")
 
 
 st.title("🔎🤖AI Chat with search🤖")
+
 
 ## Sidebar for settings
 st.sidebar.title("Settings")
